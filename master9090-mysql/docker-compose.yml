@@ -1,0 +1,21 @@
+version: '2'
+services:
+  liferay-master-9090:
+    build: .
+    ports:
+     - "9090:9090"
+     - "11311:11311"
+    depends_on:
+     - mysql
+  mysql:
+    image: mdelapenya/mysql-utf8
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/joseignacio/compiladores/liferay/dockerTemp/master9090/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=mySecretPwd
+      - MYSQL_DATABASE=master9090
+      - character-set-server=utf8mb4
+      - collation-server=utf8mb4_unicode_ci
+
